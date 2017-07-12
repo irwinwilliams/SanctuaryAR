@@ -1,0 +1,256 @@
+<html>
+<head>
+    <title>The Gehazi Exhibit</title>
+    <meta name="keywords" content="argon, aframe, augmented reality, web, javascript, gehazi, elijah">
+    <meta name="description" content="Gehazi Exhibit in Argon + A-Frame">
+    <script crossorigin="anonymous" src="https://aframe.io/releases/0.5.0/aframe.min.js"></script>
+    <!--<script crossorigin="anonymous" 
+      src="https://cdn.glitch.com/2dd120f4-5d77-403f-af9d-feb8e33ed767%2Faframe.min.0.6.0.js?1499539684510"></script>  
+    -->
+    <script crossorigin="anonymous" src="https://unpkg.com/aframe-text-geometry-component@^0.5.0/dist/aframe-text-geometry-component.min.js"></script> 
+    <script crossorigin="anonymous" src="https://cdn.glitch.com/2dd120f4-5d77-403f-af9d-feb8e33ed767%2Fargon.js?1499539684151"></script>
+    <script crossorigin="anonymous" src="argon-aframe.js"></script>
+    <!--<script src="aframe-orbit-controls-component.js"></script>-->
+    <script crossorigin="anonymous" src="CSS3DArgonRenderer.js"></script>
+    <script crossorigin="anonymous" src="CSS3DArgonHUD.js"></script>
+    <script crossorigin="anonymous" src="aframe-look-at-component.js"></script> 
+    <script crossorigin="anonymous" src="jquery-1.9.1.min.js"></script>    
+    <script crossorigin="anonymous" src="modernizr-2.6.2-respond-1.1.0.min.js"></script>    
+    <script crossorigin="anonymous" src="circletype.js"></script>    
+    <script crossorigin="anonymous" src="client.js"></script>    
+    <!--<script crossorigin="anonymous" src="aframe-mouse-cursor-component.min.js"></script>-->
+
+    <link rel="stylesheet" type="text/css" href="style.css">    
+    <link rel="stylesheet" type="text/css" href="font-awesome.min.css">
+
+
+</head>
+
+<body>
+    <div hidden>
+      <div id="defineDNA" class="definition"><h1>Spiritual DNA</h1>
+      </div>
+      <div id="whyEC">
+        <div class="definition">
+          <h1>Why are we called Elijah Centre?</h1>
+        </div>
+      </div>
+      <div id="whyEC_answer">
+        <p>Elijah Centre (EC) has a God-ordained mandate from the Lord to:</p>
+        <ul class="content"> 
+            <li>Exalt the Name, Person, Character and Word of the Lord Jesus Christ in the midst of our order.</li>                             
+            <li>Bring reformation and restructuring to the global Church;</li>                             
+            <li>Proclaim to all the nations of the earth a bold new kingdom advance for the 21st Century.</li>                             
+        </ul>
+      </div>
+      <div id="elijah_answer">
+        <div class="content">
+          <dl>
+            
+          <dt>Who was Elijah?</dt>
+            <dd>Elijah was bold and lived by tremendous faith. </dd>
+            <dd>He proclaimed the word of the Lord</dd>
+            <dd>He challenged the opposing false spirit of Baal.</dd>
+            <dd>He rebuilt the broken down altars. </dd>
+            <dd>He had a heart for others that they will come into truth. </dd>
+            <dd>We too as Elijah Centre live by all of the above. </dd>
+          </dl>
+
+
+       
+        </div>
+        <div class="illustration">
+          <img src="https://cdn.glitch.com/2dd120f4-5d77-403f-af9d-feb8e33ed767%2Felijah-512.png?1499564036683">
+        </div>
+      </div>
+      <div id="defineDNA_answer" class="definition">
+        <h1>Spiritual DNA</h1>
+        <p>The divine code in our spirit man: it contains our history in Christ, and the instructions for interacting with the Lord and in his ways.</p>
+      </div>
+      <div id="whoElijah">
+        <div class="definition">
+          <h2>Who was Elijah?</h2>
+        </div>
+      </div>
+      <div id="circle-container">
+        <div id="circle">
+          <h1>I ascend the mountain of the Lord with clean hands and a pure heart!</h1>
+        </div>
+      </div>
+    </div>
+    
+    <ar-scene inspector="url: http://blog.irwinwilliams.com/aframe-inspector/dist/aframe-inspector.js">
+        <a-assets>
+            <img crossorigin="anonymous" 
+                 id="ECMAP" 
+                 src="https://cdn.glitch.com/2dd120f4-5d77-403f-af9d-feb8e33ed767%2Fec-map.png" />
+            <img crossorigin="anonymous"
+                 id="DNA2"
+                 src="https://cdn.glitch.com/2dd120f4-5d77-403f-af9d-feb8e33ed767%2Fdna4.png?1499739656066" />
+                 <!--src="https://cdn.glitch.com/2dd120f4-5d77-403f-af9d-feb8e33ed767%2Fdna.png?1499562350131"/>-->
+            <img crossorigin="anonymous"
+                 id="FIREBALL"
+                 src="https://cdn.glitch.com/2dd120f4-5d77-403f-af9d-feb8e33ed767%2Ffireball.png?1499739861209" />
+            <img crossorigin="anonymous" 
+               id="elijah"
+               src="https://cdn.glitch.com/2dd120f4-5d77-403f-af9d-feb8e33ed767%2Felijah-512.png?1499564036683"
+               width="512" />
+            <img crossorigin="anonymous" 
+                 id="ICEBERG" 
+                 src="https://cdn.glitch.com/2dd120f4-5d77-403f-af9d-feb8e33ed767%2Ficeberg.jpg?1499534374568" />
+
+            <a-asset-item id="optimerBoldFont" src="https://rawgit.com/mrdoob/three.js/dev/examples/fonts/optimer_bold.typeface.json"></a-asset-item>
+            <a-mixin id="boldFont" text="font: #optimerBoldFont"></a-mixin>
+    
+
+        </a-assets>
+
+        <a-entity id="gehazi-exhibit" position="0 0 0"> 
+          
+          
+          <a-image cursor-listener=""
+                   material="opacity:1"
+                   position="0 0 -60" scale="50 50 50" id="plane-north" src="#ECMAP">
+             <a-entity 
+                    id="txtKeyPhrase"
+                    position="-0.4 0.6 0"
+                    scale="1 1 1"
+                    text="color: #eeeeee; opacity: 1; value: There is resource all around us that we don't see but which are key to our world."></a-entity>
+          </a-image>
+          <!--<a-plane position="0 0 -60" material="" id="plane-ceiling" rotation="0 -90 0">-->
+          
+          <a-plane rotation="90 0 0" scale="5 5 5" cursor-listener="" position="0 30 0" material="" >
+
+            <a-entity position="-0.5 3 0" scale="5 5 5" text="color:#0000ff;value:I"></a-entity>
+            <a-entity position="0 3 0" scale="5 5 5" text="color:#0000ff;value:ascend"></a-entity>
+            <a-entity position="1 3 0" scale="5 5 5" text="color:#0000ff;value:the mountain"></a-entity>
+            <a-entity position="-0.5 2 0" scale="5 5 5" text="color:#0000ff;value:with"></a-entity>
+            <a-entity position="0 2 0" scale="5 5 5" text="color:#0000ff;value:clean hands"></a-entity>
+            <a-entity position="1.5 2 0" scale="5 5 5" text="color:#0000ff;value:and"></a-entity>
+            <a-entity position="0.5 1 0" scale="5 5 5" text="color:#0000ff;value:a pure heart!"></a-entity>
+                <!--<a-animation attribute="rotation" dur="20000" to="0 0 1800" direction="normal" easing="ease-out" repeat="indefinite" fill="both"></a-animation>
+                -->
+                <!--<a-entity css-object="div:#circle-container" scale="0.3 0.3 0.3" position="0 0 0"></a-entity>-->
+                
+        </a-plane>
+          
+          <a-image src="#DNA2" 
+                    position="-60 0 0" 
+                    scale="20 20 20" 
+                    rotation="0 90 0"
+                    >
+
+                  <a-entity  visible="false"
+                    id="btnWhyEC"
+                    dna-wall-listener="whyEC"
+                    position="-0.4 0.6 0"
+                    scale="1 1 1"
+                    text="color: #0000ff; opacity: 1; value: Why are we called Elijah Centre?"></a-entity>
+            
+                  <a-entity 
+                    id="btnWhoElijah"
+                    dna-wall-listener="elijah"
+                    position="-0.2 0.8 0"
+                    scale="3 3 3"
+                    text="color: #0000ff; opacity: 1; value: Who was Elijah?"></a-entity>
+            
+                  <a-entity 
+                    id="btnSpiritualDNA"
+                    dna-wall-listener="defineDNA"
+                    position="0.3 1.2 0"
+                    scale="3 3 3"
+                    text="color: #0000ff; opacity: 1; value: What is Spiritual DNA"></a-entity>
+          </a-image>
+          
+          <a-entity billboard="" visible="false" position="-200 0 0" rotation="0 90 0">
+            <a-entity rotation="0 0 0">
+              <a-entity dna-wall-listener="" css-object="div:#whyEC" scale="0.3 0.3 0.3" position="-60 0 0.5"></a-entity>
+              <a-entity dna-wall-listener="" css-object="div:#whoElijah" scale="0.3 0.3 0.3" position="-60 -30 0.5"></a-entity>
+            </a-entity>
+          </a-entity>
+          <a-entity id="billboard_whyEC_answer" visible="false" billboard="" position="-200 0 -150" rotation="0 90 0">
+            <a-entity rotation="0 0 0">
+              <a-entity dna-wall-listener="" css-object="div:#whyEC_answer" scale="0.3 0.3 0.3" position="-60 0 0.5"></a-entity>
+            </a-entity>
+          </a-entity>
+          <a-entity id="billboard_defineDNA_answer" visible="false" billboard="" position="-200 0 -150" rotation="0 90 0">
+            <a-entity rotation="0 0 0">
+              <a-entity css-object="div:#defineDNA_answer" scale="0.3 0.3 0.3" position="-60 0 0.5"></a-entity>
+            </a-entity>
+          </a-entity>
+          <a-entity id="billboard_elijah_answer" visible="false" billboard="" position="-100 0 -200" rotation="0 90 0">
+            <a-entity rotation="0 0 0">
+              <a-entity css-object="div:#elijah_answer" scale="0.3 0.3 0.3" position="-60 0 0.5"></a-entity>
+              <a-image src="#elijah" position="-70 0 140.02" scale="10 10 10" rotation="0 60 0"></a-image>
+            </a-entity>
+          </a-entity>
+          
+          <a-entity rotation="-90 0 0" cursor-listener="" 
+                   position="0 -60 0" 
+                   material="" id="plane-floor">
+                <a-image src="#ICEBERG" position="0 7.8 0" scale="12 12 12">
+                    <!--<a-animate attribute="rotation" from="90 0 0" to="90 360 0" 
+                      direction="alternate" dur="10000"></a-animate>-->
+                </a-image>
+            </a-entity>
+          
+          <!--<a-plane rotation="0 180 0" 
+                   position="0 0 60"  scale="10 10 10"
+                   material="" id="plane-south">-->
+            <!--<a-entity position="0 2 -2" id="blue"   opacity="1" geometry="primitive: box" material="color: blue;">
+</a-entity>-->
+            <!--<a-entity position="0.5 0 0" text="color:#ff0000;value:Centre;zOffset:1"></a-entity>-->
+
+          <a-entity 
+            rotation="0 180 0" 
+            position="0 0 60"
+            scale="5 5 5"
+            id="plane-south">
+          </a-entity>
+          
+          <a-entity south-wall-blocks />
+
+        </a-entity>
+      
+      <!-- cursor="fuse:false; fuse-timeout: 1000" 
+          
+        -->
+        <ar-camera look-controls>
+            <a-entity id="myCursor" 
+                      cursor="fuse: false; fuseTimeout: 500"
+                      position="0 0 -0.1" 
+                      geometry="primitive:ring; radiusInner: 0.001; radiusOuter: 0.0015" 
+                      material="color: #0000EE; opacity:0.5;" 
+
+                      orbit-controls="
+                    target: #target;
+                    enableDamping: true;
+                    dampingFactor: 0.125;
+                    rotateSpeed:0.25;
+                    rotateToSpeed: 0.04;
+                    rotateTo: 0.172 4.140 2.797;
+                    logPosition: true;
+                    ">
+              <a-animation begin="cursor-fusing" easing="ease-in" attribute="scale"
+               fill="backwards" from="1 1 1" to="0.5 0.5 0.5"></a-animation>
+                        <!--<a-image src="#FIREBALL" scale="0.01 0.01 0.01"></a-image>-->
+            </a-entity>
+        </ar-camera>
+
+    </ar-scene>
+    <script>
+        var arScene = document.querySelector('ar-scene');
+        var content = document.querySelector('#gehazi-exhibit');
+        // the ar-camera has an argon reference frame attached, so when it gets it's first value,
+        // we'll get this event 
+        arScene.addEventListener("referenceframe-statuschanged", function() {
+            var camera = document.querySelector('ar-camera');
+            var vec = camera.object3D.getWorldDirection();
+            vec.multiplyScalar(-10);
+            vec.y -= 1;
+            content.setAttribute("position", {x: vec.x, y: vec.y, z: vec.z});
+        })
+    </script>
+</body>
+
+</html>
