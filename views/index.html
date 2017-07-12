@@ -1,217 +1,227 @@
 <html>
-<!--https://stackoverflow.com/questions/39514722/automatically-move-camera-a-frame-js-->
-  <head>
-    <title>Sanctuary start up</title>
-  	<meta name="keywords" content="argon, aframe, augmented reality, web, javascript">
-    <meta name="description" content="Hello, World! Argon + A-Frame">
-    <script src="https://aframe.io/releases/0.5.0/aframe.min.js"></script>    
-    <script src="https://rawgit.com/argonjs/argon/develop/dist/argon.js"></script>
-    <script src="https://rawgit.com/argonjs/argon-aframe/develop/dist/argon-aframe.js"></script>
-    <script src="https://cdn.rawgit.com/tizzle/aframe-orbit-controls-component/v0.1.8/dist/aframe-orbit-controls-component.min.js"></script>
-    <script src="https://samples-develop.argonjs.io/resources/lib/CSS3DArgonRenderer.js"></script>
-    <script src="https://samples-develop.argonjs.io/resources/lib/CSS3DArgonHUD.js"></script>
-    <script src="https://aframe.argonjs.io/resources/js/aframe-look-at-component.js"></script>
-	  <link rel="stylesheet" type="text/css" href="style.css">
+<head>
+    <title>The Gehazi Exhibit</title>
+    <meta name="keywords" content="argon, aframe, augmented reality, web, javascript, gehazi, elijah">
+    <meta name="description" content="Gehazi Exhibit in Argon + A-Frame">
+    <script crossorigin="anonymous" src="https://aframe.io/releases/0.5.0/aframe.min.js"></script>
+    <!--<script crossorigin="anonymous" 
+      src="https://cdn.glitch.com/2dd120f4-5d77-403f-af9d-feb8e33ed767%2Faframe.min.0.6.0.js?1499539684510"></script>  
+    -->
+    <script crossorigin="anonymous" src="https://unpkg.com/aframe-text-geometry-component@^0.5.0/dist/aframe-text-geometry-component.min.js"></script> 
+    <script crossorigin="anonymous" src="https://cdn.glitch.com/2dd120f4-5d77-403f-af9d-feb8e33ed767%2Fargon.js?1499539684151"></script>
+    <script crossorigin="anonymous" src="argon-aframe.js"></script>
+    <!--<script src="aframe-orbit-controls-component.js"></script>-->
+    <script crossorigin="anonymous" src="CSS3DArgonRenderer.js"></script>
+    <script crossorigin="anonymous" src="CSS3DArgonHUD.js"></script>
+    <script crossorigin="anonymous" src="aframe-look-at-component.js"></script> 
+    <script crossorigin="anonymous" src="jquery-1.9.1.min.js"></script>    
+    <script crossorigin="anonymous" src="modernizr-2.6.2-respond-1.1.0.min.js"></script>    
+    <script crossorigin="anonymous" src="circletype.js"></script>    
+    <script crossorigin="anonymous" src="client.js"></script>    
+    <!--<script crossorigin="anonymous" src="aframe-mouse-cursor-component.min.js"></script>-->
 
-    <script>
-      function getRandColor () {
-          var letters = '0123456789ABCDEF'.split('');
-          var color = '#';
-          for (var i = 0; i < 6; i++) {
-              color += letters[Math.floor(Math.random() * 16)];
-          }
-          return color;
-      }
+    <link rel="stylesheet" type="text/css" href="style.css">    
+    <link rel="stylesheet" type="text/css" href="font-awesome.min.css">
 
-      // Component to change to random color on click.
-      AFRAME.registerComponent('cursor-listener', {
-        init: function () {
-          //this.el.addEventListener('click', function (evt) {
-            //this.setAttribute('material', 'color', getRandColor());
-          //  console.log('I was clicked at: ', evt.detail.intersection.point);
-          //});
-          //this.el.addEventListener('mouseenter', function (evt) {
-          //  this.setAttribute('material', 'opacity', 0.5);
-          //});
-          //this.el.addEventListener('mouseleave', function (evt) {
-          //  this.setAttribute('material', 'opacity', 1.0);
-          //});
-        }
-      });
-    </script>
-    <script>
-      AFRAME.registerComponent('south-wall-pictures', {
-      schema: {},
-      init: function () {
-        var southPlane = document.getElementById("plane-south");
-        var nextX = 35;
-        var nextY = -20;
-        var nextImage = 0;
-        for (i =0;i<6;i++)
-          {
-            for (j=0;j<5;j++)
-              {
-                //https://cdn.glitch.com/2dd120f4-5d77-403f-af9d-feb8e33ed767%2Fsouth-wall%20(27).jpg
-                //<a-image src="#EAD" position="000 20 0"></a-image>
-                  var image_url ="https://cdn.glitch.com/2dd120f4-5d77-403f-af9d-feb8e33ed767%2Fsouth-wall%20("+(nextImage++)+").jpg";
-                  var wall_image = document.createElement('a-image');
-                  var scale = "5";
-                  scale = scale + " " + scale + " " + scale;
-                  var position = nextX + " " +nextY + " 0";
-                  wall_image.setAttribute("src", image_url);
-                  wall_image.setAttribute("position", position);
-                  wall_image.setAttribute("scale",scale)
-                  southPlane.appendChild(wall_image);
-                  nextX += -15;
 
-              }
-            nextX = 35;
-            nextY += 10;
-          }
-      },
-      update: function () {},
-      tick: function () {},
-      remove: function () {},
-      pause: function () {},
-      play: function () {}
-      });
-    </script>
+</head>
 
-  </head>
-  <body>
+<body>
     <div hidden>
-      <div id="mydiv" class="boxface">Hey<br>+<br>First div!!!</div> 
-      <div id="mydiv2" class="boxface">WebGL<br>+<br>CSS</div>
-      <div id="front-panel" class="dna-description">
-        <h1>Our Spiritual DNA</h1>
-        <p>
-          The heritage we share includes truth, faith, love, grace and wisdom. Our spiritual DNA describes passionate pursuit of the Lord and his ways.
-        </p>
+      <div id="defineDNA" class="definition"><h1>Spiritual DNA</h1>
       </div>
-    </div>    
-    <ar-scene inspector="url: http://blog.irwinwilliams.com/aframe-inspector/dist/aframe-inspector.js">
-      <a-assets>
-        <img id="EAD" src="https://ucarecdn.com/f262efaa-7a85-4ef3-9662-57968852ed82/"/>
-        <img id= "ECMAP" src= "https://ucarecdn.com/b1671a9f-34f5-41b2-86ff-b9499e34d9d4/"/>
-        <img id="ICEBERG" src="https://ucarecdn.com/ca10ee80-5ce9-4b59-8f64-d722b0e07849/" />
-        <img id="JWES" src="data:image/jpeg;base64,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">
-        <img id="JHUS" src="data:image/jpeg;base64,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">
-        <!-- http://godsgenerals.com/personalities/ -->
-        <img id="LUTHER" src="https://cdn.glitch.com/2dd120f4-5d77-403f-af9d-feb8e33ed767%2Fmartin-luther.jpg?1499202323645" />
-        <img id="WYCLIFFE" src="https://cdn.glitch.com/2dd120f4-5d77-403f-af9d-feb8e33ed767%2Fjohnycliffe-200x300.jpg?1499202323718" />
-        <img id="HUS" src="https://cdn.glitch.com/2dd120f4-5d77-403f-af9d-feb8e33ed767%2Fjohnhus-200x300.jpg?1499202323802"/>
-        <img id="CALVIN" src="https://cdn.glitch.com/2dd120f4-5d77-403f-af9d-feb8e33ed767%2Fjohncalvin-200x300.jpg?1499202323827" />
-        <imd id="SEYMOUR" src="https://cdn.glitch.com/2dd120f4-5d77-403f-af9d-feb8e33ed767%2Fwseymour-200x300.jpg?1499202323834" />
-      </a-assets>
-      
-      
-      <a-entity id="sanctuary-reality" position="50 50 10">
-        <!--<a-image src="#EAD" position="0 7.8 0" scale="12 12 12">
-          <a-animate attribute="rotation" from="90 0 0" to="90 360 0" direction="alternate" dur="10000"></a-animate>
-        </a-image>-->
-        <!--
-        <a-sphere position="16 1.25 -1" cursor-listener radius="1.25" color="#EF2D5E" ></a-sphere>
-        <a-box position="-1 0.5 1" cursor-listener rotation="0 45 0" width="1" height="1" depth="1"  color="#4CC3D9" ></a-box>
-        <a-entity billboard position="0 3 0">
-          <a-entity rotation="0 45 0">
-                  <a-entity css-object="div: #mydiv" scale="0.01 0.01 0.01" rotation="0 0 0" position="0 0 0.5"></a-entity>
-                  <a-entity css-object="div: #mydiv2" scale="0.01 0.01 0.01" rotation="0 -90 0" position="-0.5 0 0"></a-entity>
-          </a-entity>
-        </a-entity>
-        <a-cylinder position="0 08" cursor-listener radius="0.5" height="1.5" color="#FFC65D">
-          <a-text value="NORTH Cylinder" position="0 0 0" ></a-text>
-        </a-cylinder>
--->
-        <!--a-plane rotation="-90 0 0" cursor-listener width="4" height="4" color="#7BC8A4"></a-plane>-->
-      
-        
-      <a-plane  rotation="0 180 0"  cursor-listener="" width="5000" height="5000" color="#F8F8F8" 
-               position="0 0 60" material="opacity:0.5;color:#ffff00" id="plane-south" geometry="height:8;width:8">
-          <a-text value="SOUTH" position="0 0 0" ></a-text>
-          <a-entity south-wall-pictures />
-     </a-plane>
-      
-        
-      <a-plane cursor-listener="" width="5000" height="5000" color="#EEF8EE" 
-                position="60 0 0" material="opacity:0.5;color:#ff8000" id="plane-east" 
-                rotation="0 -90 0" geometry="height:8;width:8">
-          <a-text value="EAST" position="0 0 0" ></a-text>
-      </a-plane>
-        <!--color:#0000ff-->
-       <a-plane cursor-listener="" width="5000" height="5000"  
-                position="-60 0 0" material="opacity:0.5;" id="plane-west" 
-                rotation="0 90 0" geometry="height:8;width:8">
-          <!--<a-text value="WEST" position="0 0 0" ></a-text>-->
-        <a-entity position="0 0 3">
-          <a-animation attribute="rotation" 
-                     dur="200000" 
-                     to="0 1800 0" 
-                     direction="normal" 
-                     easing="ease-out" 
-                     repeat="indefinite" 
-                     fill="both"></a-animation>
-          <a-collada-model position="0 0 0" src="https://ucarecdn.com/38af69b2-75dc-446c-8909-a8d9b10c1db5/"></a-collada-model>
+      <div id="whyEC">
+        <div class="definition">
+          <h1>Why are we called Elijah Centre?</h1>
+        </div>
+      </div>
+      <div id="whyEC_answer">
+        <p>Elijah Centre (EC) has a God-ordained mandate from the Lord to:</p>
+        <ul class="content"> 
+            <li>Exalt the Name, Person, Character and Word of the Lord Jesus Christ in the midst of our order.</li>                             
+            <li>Bring reformation and restructuring to the global Church;</li>                             
+            <li>Proclaim to all the nations of the earth a bold new kingdom advance for the 21st Century.</li>                             
+        </ul>
+      </div>
+      <div id="elijah_answer">
+        <div class="content">
+          <dl>
+            
+          <dt>Who was Elijah?</dt>
+            <dd>Elijah was bold and lived by tremendous faith. </dd>
+            <dd>He proclaimed the word of the Lord</dd>
+            <dd>He challenged the opposing false spirit of Baal.</dd>
+            <dd>He rebuilt the broken down altars. </dd>
+            <dd>He had a heart for others that they will come into truth. </dd>
+            <dd>We too as Elijah Centre live by all of the above. </dd>
+          </dl>
 
-          <a-plane src="#JHUS"     position="-1.5 0.3 0" rotation="0 180 0"></a-plane>
-          <a-plane src="#LUTHER"   position="1.5 1.4 0" rotation="0 180 0"></a-plane>
-          <a-plane src="#JWES"     position="-1.5 2.0 0" rotation="0 180 0"></a-plane>
-          <a-plane src="#SEYMOUR"  position="1.5 2.3 0" rotation="0 180 0"></a-plane>
-          <a-plane src="#CALVIN"   position="-1.5 3.0 0" rotation="0 180 0"></a-plane>
-          <a-plane src="#HUS"      position="1.5 3.4 0" rotation="0 180 0"></a-plane>
-          <a-plane src="#WYCLIFFE" position="-1.5 4.0 0" rotation="0 180 0"></a-plane>
-          <a-entity position="5 0 0"></a-entity>
-        </a-entity>
-         <a-entity billboard position="-5 0 0">
-          <a-entity rotation="0 0 0">
-                  <a-entity css-object="div: #front-panel" scale="0.01 0.01 0.01" rotation="0 0 0" position="-0.5 0 0"></a-entity>
+
+       
+        </div>
+        <div class="illustration">
+          <img src="https://cdn.glitch.com/2dd120f4-5d77-403f-af9d-feb8e33ed767%2Felijah-512.png?1499564036683">
+        </div>
+      </div>
+      <div id="defineDNA_answer" class="definition">
+        <h1>Spiritual DNA</h1>
+        <p>The divine code in our spirit man: it contains our history in Christ, and the instructions for interacting with the Lord and in his ways.</p>
+      </div>
+      <div id="whoElijah">
+        <div class="definition">
+          <h2>Who was Elijah?</h2>
+        </div>
+      </div>
+      <div id="circle-container">
+        <div id="circle">
+          <h1>I ascend the mountain of the Lord with clean hands and a pure heart!</h1>
+        </div>
+      </div>
+    </div>
+    
+    <ar-scene inspector="url: http://blog.irwinwilliams.com/aframe-inspector/dist/aframe-inspector.js">
+        <a-assets>
+            <img crossorigin="anonymous" 
+                 id="ECMAP" 
+                 src="https://cdn.glitch.com/2dd120f4-5d77-403f-af9d-feb8e33ed767%2Fec-map.png" />
+            <img crossorigin="anonymous"
+                 id="DNA2"
+                 src="https://cdn.glitch.com/2dd120f4-5d77-403f-af9d-feb8e33ed767%2Fdna4.png?1499739656066" />
+                 <!--src="https://cdn.glitch.com/2dd120f4-5d77-403f-af9d-feb8e33ed767%2Fdna.png?1499562350131"/>-->
+            <img crossorigin="anonymous"
+                 id="FIREBALL"
+                 src="https://cdn.glitch.com/2dd120f4-5d77-403f-af9d-feb8e33ed767%2Ffireball.png?1499739861209" />
+            <img crossorigin="anonymous" 
+               id="elijah"
+               src="https://cdn.glitch.com/2dd120f4-5d77-403f-af9d-feb8e33ed767%2Felijah-512.png?1499564036683"
+               width="512" />
+            <img crossorigin="anonymous" 
+                 id="ICEBERG" 
+                 src="https://cdn.glitch.com/2dd120f4-5d77-403f-af9d-feb8e33ed767%2Ficeberg.jpg?1499534374568" />
+
+            <a-asset-item id="optimerBoldFont" src="https://rawgit.com/mrdoob/three.js/dev/examples/fonts/optimer_bold.typeface.json"></a-asset-item>
+            <a-mixin id="boldFont" text="font: #optimerBoldFont"></a-mixin>
+    
+
+        </a-assets>
+
+        <a-entity id="gehazi-exhibit" position="0 0 0"> 
+          
+          
+          <a-image cursor-listener=""
+                   material="opacity:1"
+                   position="0 0 -60" scale="50 50 50" id="plane-north" src="#ECMAP">
+             <a-entity 
+                    id="txtKeyPhrase"
+                    position="-0.4 0.6 0"
+                    scale="1 1 1"
+                    text="color: #eeeeee; opacity: 1; value: There is resource all around us that we don't see but which are key to our world."></a-entity>
+          </a-image>
+          <!--<a-plane position="0 0 -60" material="" id="plane-ceiling" rotation="0 -90 0">-->
+          
+          <a-plane rotation="90 0 0" scale="5 5 5" cursor-listener="" position="0 30 0" material="" >
+
+            <a-entity position="-0.5 3 0" scale="5 5 5" text="color:#0000ff;value:I"></a-entity>
+            <a-entity position="0 3 0" scale="5 5 5" text="color:#0000ff;value:ascend"></a-entity>
+            <a-entity position="1 3 0" scale="5 5 5" text="color:#0000ff;value:the mountain"></a-entity>
+            <a-entity position="-0.5 2 0" scale="5 5 5" text="color:#0000ff;value:with"></a-entity>
+            <a-entity position="0 2 0" scale="5 5 5" text="color:#0000ff;value:clean hands"></a-entity>
+            <a-entity position="1.5 2 0" scale="5 5 5" text="color:#0000ff;value:and"></a-entity>
+            <a-entity position="0.5 1 0" scale="5 5 5" text="color:#0000ff;value:a pure heart!"></a-entity>
+                <!--<a-animation attribute="rotation" dur="20000" to="0 0 1800" direction="normal" easing="ease-out" repeat="indefinite" fill="both"></a-animation>
+                -->
+                <!--<a-entity css-object="div:#circle-container" scale="0.3 0.3 0.3" position="0 0 0"></a-entity>-->
+                
+        </a-plane>
+          
+          <a-image src="#DNA2" 
+                    position="-60 0 0" 
+                    scale="20 20 20" 
+                    rotation="0 90 0"
+                    >
+
+                  <a-entity  visible="false"
+                    id="btnWhyEC"
+                    dna-wall-listener="whyEC"
+                    position="-0.4 0.6 0"
+                    scale="1 1 1"
+                    text="color: #0000ff; opacity: 1; value: Why are we called Elijah Centre?"></a-entity>
+            
+                  <a-entity 
+                    id="btnWhoElijah"
+                    dna-wall-listener="elijah"
+                    position="-0.2 0.8 0"
+                    scale="1 1 1"
+                    text="color: #0000ff; opacity: 1; value: Who was Elijah?"></a-entity>
+            
+                  <a-entity 
+                    id="btnSpiritualDNA"
+                    dna-wall-listener="defineDNA"
+                    position="0.3 0.8 0"
+                    scale="1 1 1"
+                    text="color: #0000ff; opacity: 1; value: What is Spiritual DNA"></a-entity>
+          </a-image>
+          
+          <a-entity billboard="" visible="false" position="-200 0 0" rotation="0 90 0">
+            <a-entity rotation="0 0 0">
+              <a-entity dna-wall-listener="" css-object="div:#whyEC" scale="0.3 0.3 0.3" position="-60 0 0.5"></a-entity>
+              <a-entity dna-wall-listener="" css-object="div:#whoElijah" scale="0.3 0.3 0.3" position="-60 -30 0.5"></a-entity>
+            </a-entity>
           </a-entity>
+          <a-entity id="billboard_whyEC_answer" visible="false" billboard="" position="-200 0 -150" rotation="0 90 0">
+            <a-entity rotation="0 0 0">
+              <a-entity dna-wall-listener="" css-object="div:#whyEC_answer" scale="0.3 0.3 0.3" position="-60 0 0.5"></a-entity>
+            </a-entity>
+          </a-entity>
+          <a-entity id="billboard_defineDNA_answer" visible="false" billboard="" position="-200 0 -150" rotation="0 90 0">
+            <a-entity rotation="0 0 0">
+              <a-entity dna-wall-listener="" css-object="div:#defineDNA_answer" scale="0.3 0.3 0.3" position="-60 0 0.5"></a-entity>
+            </a-entity>
+          </a-entity>
+          <a-entity id="billboard_elijah_answer" visible="false" billboard="" position="-100 0 -200" rotation="0 90 0">
+            <a-entity rotation="0 0 0">
+              <a-entity dna-wall-listener="" css-object="div:#elijah_answer" scale="0.3 0.3 0.3" position="-60 0 0.5"></a-entity>
+            </a-entity>
+          </a-entity>
+          
+          <a-entity rotation="-90 0 0" cursor-listener="" 
+                   position="0 -60 0" 
+                   material="" id="plane-floor">
+                <a-image src="#ICEBERG" position="0 7.8 0" scale="12 12 12">
+                    <!--<a-animate attribute="rotation" from="90 0 0" to="90 360 0" 
+                      direction="alternate" dur="10000"></a-animate>-->
+                </a-image>
+            </a-entity>
+          
+          <!--<a-plane rotation="0 180 0" 
+                   position="0 0 60"  scale="10 10 10"
+                   material="" id="plane-south">-->
+            <!--<a-entity position="0 2 -2" id="blue"   opacity="1" geometry="primitive: box" material="color: blue;">
+</a-entity>-->
+            <!--<a-entity position="0.5 0 0" text="color:#ff0000;value:Centre;zOffset:1"></a-entity>-->
+
+          <a-entity 
+            rotation="0 180 0" 
+            position="0 0 60"
+            scale="5 5 5"
+            id="plane-south">
+          </a-entity>
+          
+          <a-entity south-wall-blocks />
+
         </a-entity>
-      </a-plane>
       
-      <a-plane rotation="90 0 0" cursor-listener="" width="5000" height="5000" 
-               position="0 60 0" material="" id="plane-ceiling" geometry="height:8;width:8">
-          <!--<a-text value="CEILING" position="0 0 0" ></a-text>-->
-          <a-image src="#EAD" position="0 7.8 0" scale="100 100 100" rotation="0 0 0">
-            <a-animation attribute="rotation" 
-                     dur="2000000" 
-                     to="0 0 1800" 
-                     direction="normal" 
-                     easing="ease-out" 
-                     repeat="indefinite" 
-                     fill="both"></a-animation>
-          </a-image>
-      </a-plane>
-        
-        
-      <a-plane rotation="-90 0 0" cursor-listener="" width="5000" height="5000" 
-               position="0 -60 0" material="" id="plane-floor" geometry="height:8;width:8">
-          <!--<a-text value="FLOOR" position="0 0 0" ></a-text>-->
-          <a-image src="#ICEBERG" position="0 7.8 0" scale="12 12 12">
-            <a-animate attribute="rotation" from="90 0 0" to="90 360 0" direction="alternate" dur="10000"></a-animate>
-          </a-image>
-      </a-plane>
-        <!--color="#color:#ff0000" -->
-      <a-plane cursor-listener="" width="5000" height="5000"  
-               position="0 0 -60" material="opacity:0.5;" id="plane-north" geometry="height:8;width:8">
-          <!--<a-text visible="false" value="NORTH" position="0 0 0" ></a-text>-->
-          <a-image src="#ECMAP" position="0 -1 -10" scale="59 59 59"> 
-             <a-animate attribute="rotation" from="90 0 0" to="90 360 0" direction="alternate" dur="10000"></a-animate>
-        </a-image>
-        
-        
-      </a-plane>
-        
-      
-     
-        
-        
-      </a-entity>
-      <ar-camera look-controls>
-        <a-entity id="myCursor"  cursor="fuse:false; fuse-timeout: 1000"
-                    position="0 0 -0.1"
-                    geometry="primitive:ring; radiusInner: 0.001; radiusOuter: 0.0015"
-                    material="color: #2E3A87; opacity:0.3;"
-                          orbit-controls="
+      <!-- cursor="fuse:false; fuse-timeout: 1000" 
+          
+        -->
+        <ar-camera look-controls>
+            <a-entity id="myCursor" 
+                      cursor="fuse: false; fuseTimeout: 500"
+                      position="0 0 -0.1" 
+                      geometry="primitive:ring; radiusInner: 0.001; radiusOuter: 0.0015" 
+                      material="color: #0000EE; opacity:0.5;" 
+
+                      orbit-controls="
                     target: #target;
                     enableDamping: true;
                     dampingFactor: 0.125;
@@ -219,27 +229,27 @@
                     rotateToSpeed: 0.04;
                     rotateTo: 0.172 4.140 2.797;
                     logPosition: true;
-                    ">          
-        </a-entity>
-      </ar-camera> 
-      
+                    ">
+              <a-animation begin="cursor-fusing" easing="ease-in" attribute="scale"
+               fill="backwards" from="1 1 1" to="0.5 0.5 0.5"></a-animation>
+                        <!--<a-image src="#FIREBALL" scale="0.01 0.01 0.01"></a-image>-->
+            </a-entity>
+        </ar-camera>
+
     </ar-scene>
     <script>
-
-      var arScene = document.querySelector('ar-scene');
-      var content = document.querySelector('#sanctuary-reality');
-      // the ar-camera has an argon reference frame attached, so when it gets it's first value,
-      // we'll get this event 
-      arScene.addEventListener("referenceframe-statuschanged", function () {
-        var camera = document.querySelector('ar-camera');
-        var vec = camera.object3D.getWorldDirection();
-        vec.multiplyScalar(-10);
-        vec.y -= 1;
-        content.setAttribute("position", {x: vec.x, y: vec.y, z: vec.z});
-      })
-      
-      
+        var arScene = document.querySelector('ar-scene');
+        var content = document.querySelector('#gehazi-exhibit');
+        // the ar-camera has an argon reference frame attached, so when it gets it's first value,
+        // we'll get this event 
+        arScene.addEventListener("referenceframe-statuschanged", function() {
+            var camera = document.querySelector('ar-camera');
+            var vec = camera.object3D.getWorldDirection();
+            vec.multiplyScalar(-10);
+            vec.y -= 1;
+            content.setAttribute("position", {x: vec.x, y: vec.y, z: vec.z});
+        })
     </script>
-  </body>
-</html>
+</body>
 
+</html>
